@@ -12,22 +12,22 @@ const running = keyframes`
 export const LoadingContainer = styled.div`
   height: 100%;
   width: 100%;
-  background-color: black;
+  background-color: var(--grey-4);
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   z-index: 1;
-  overflow: hidden;
+  display: flex;
 `;
 
 export const LoadingIcon = styled.div`
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
 
   border-radius: 50%;
-  border: 8px solid white;
-  border-left: 8px solid red;
+  border: 12px solid var(--grey-0);
+  border-left: 12px solid var(--color-primary);
 
   animation-name: ${running};
   animation-duration: 1s;
