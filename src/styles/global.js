@@ -54,9 +54,9 @@ button {
 }
 :root{
   /* Primary Palette */
-  --color-primary:#FF577F;
-  --color-primary-focus: #FF427F;
-  --color-primary-negative: #59323F;
+  --color-primary:#5D75A6;
+  --color-primary-focus: #405173;
+  --color-primary-negative: #283040;
 
   /* Grey Scale Palette */
   --grey-0: #F8F9FA;
@@ -70,6 +70,6 @@ button {
   --negative: #E83F5B;
 
   /* Typography */
-  --inter: 'Inter', sans-serif;
+  /* --inter: 'Inter', sans-serif; */
 }
 `;
