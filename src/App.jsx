@@ -1,7 +1,16 @@
+import Loading from "./components/Loading";
+import { useContext } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Routed from "./routes";
+
 const App = () => {
+  const { loading } = useContext();
   return (
     <>
-      <h1>OLa</h1>
+      {loading && <Loading />}
+      <ToastContainer />
+      <Routed />
     </>
   );
 };
