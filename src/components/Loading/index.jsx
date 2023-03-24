@@ -1,9 +1,10 @@
 import React from "react";
-import { LoadingContainer, LoadingIcon } from "./style";
+import { LoadingContainer, LoadingIcon, LoadingText } from "./style";
 
 const Loading = () => {
   return (
     <LoadingContainer>
+      <LoadingText>Carregando</LoadingText>
       <LoadingIcon />
     </LoadingContainer>
   );

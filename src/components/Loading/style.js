@@ -19,6 +19,13 @@ export const LoadingContainer = styled.div`
   position: absolute;
   z-index: 1;
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+export const LoadingText = styled.h1`
+  font-size: 3rem;
+  color: var(--grey-0);
 `;
 
 export const LoadingIcon = styled.div`
