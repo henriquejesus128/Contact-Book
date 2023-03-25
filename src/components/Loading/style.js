@@ -16,11 +16,10 @@ export const LoadingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  z-index: 1;
-  display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: absolute;
+  z-index: 1;
 `;
 
 export const LoadingText = styled.h1`
