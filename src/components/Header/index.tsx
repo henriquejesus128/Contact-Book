@@ -7,10 +7,10 @@ const Header = () => {
     <HeaderStyle>
       <StyleLogo>Contact Book</StyleLogo>
       {location.pathname === `/register` ? (
-        <Link to="/">Volta</Link>
+        <Link to="/">Login</Link>
       ) : location.pathname === `/dashboard` ? (
         <Link to="/" onClick={() => localStorage.clear()}>
-          Sair
+          Login
         </Link>
       ) : (
         <Link to="/register">Cadastrar</Link>
