@@ -42,7 +42,7 @@ export interface IUserResponse {
   updatedAt: Date;
 }
 
-export interface IReqLogin {
+export interface IReqSession {
   email: string;
   password: string;
 }
@@ -51,7 +51,7 @@ export interface IProviderProps {
   children: ReactNode;
 }
 
-export interface IAxiosLogin {
+export interface IToken {
   user: IUser;
   token: string;
 }
@@ -60,7 +60,7 @@ export interface IAuthContext {
   token: string | null;
   id: string | null;
   register: (data: IReqRegister) => Promise<void>;
-  login: (data: IReqLogin) => Promise<void>;
+  login: (data: IReqSession) => Promise<void>;
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
   update: boolean;
@@ -75,4 +75,16 @@ export interface IUserContext {
   contacts: IContact[];
   setContacts: Dispatch<SetStateAction<IContact[]>>;
   dataUser: () => Promise<void>;
+}
+
+export interface IContactContext {
+  newContact: (data: IContact) => Promise<void>;
+  deleteContact: (id: string) => Promise<void>;
+  updateContact: (data: IContact) => Promise<void>;
+  contact: IContact;
+  setContact: Dispatch<SetStateAction<IContact>>;
+  modalRegs: boolean;
+  setModalRegs: Dispatch<SetStateAction<boolean>>;
+  modalEdit: boolean;
+  setModalEdit: Dispatch<SetStateAction<boolean>>;
 }
