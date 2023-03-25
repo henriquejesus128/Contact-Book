@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import {
   IAuthContext,
   IProviderProps,
-  IAxiosLogin,
-  IReqLogin,
   IReqRegister,
   IUser,
+  IReqSession,
+  IToken,
 } from "../interface";
 import { instance } from "../services/axios";
 import { Erro, Success } from "../services/toast";
@@ -19,8 +19,6 @@ const AuthProvider = ({ children }: IProviderProps) => {
   const id = localStorage.getItem(`@ContactBook:id`);
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [update, setUpdate] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -38,15 +36,14 @@ const AuthProvider = ({ children }: IProviderProps) => {
     setLoading(false);
   };
 
-  const login = async (data: IReqLogin) => {
+  const session = async (data: IReqSession) => {
     setLoading(true);
     try {
-      const resp = await instance.post<IAxiosLogin>(`/sessions`, data);
+      const resp = await instance.post<IToken>(`/sessions`, data);
       localStorage.setItem(`@ContactBook:token`, resp.data.token);
       localStorage.setItem(`@ContactBook:id`, resp.data.user.id);
       Success(`✅Usuário logado com sucesso!`);
       navigate(`/dashboard`, { replace: true });
-      setUpdate(true);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         Erro(`${err.message}❗❗`);
@@ -60,14 +57,10 @@ const AuthProvider = ({ children }: IProviderProps) => {
       value={{
         token,
         id,
-        register,
-        login,
-        update,
-        setUpdate,
         loading,
         setLoading,
-        showPassword,
-        setShowPassword,
+        register,
+        session,
       }}
     >
       {children}
