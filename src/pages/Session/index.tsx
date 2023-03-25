@@ -1,20 +1,12 @@
-import { useForm } from "react-hook-form";
-import { IReqSession } from "../../interface";
-import { yupResolver } from "@hookform/resolvers/yup";
+import Header from "../../components/Header/index";
+import Login from "../../components/Login";
+import Main from "../../components/Main";
 
 const Session = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IReqSession>({
-    resolver: yupResolver(),
-  });
   return (
     <>
-      <header></header>
-      <main></main>
-      <footer></footer>
+      <Header />
+      <Main />
     </>
   );
 };
