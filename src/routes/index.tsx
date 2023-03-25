@@ -3,13 +3,13 @@ import { Route, Routes } from "react-router-dom";
 // import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Session";
 import NotFoundPage from "../pages/NotFoundPage";
-// import Register from "../pages/Register";
+import Register from "../pages/Register";
 
 const Routed = () => (
   <Routes>
     <Route path="/" element={<Login />} />
-    {/* <Route path="/register" element={<Register />} />
-    <Route element={<ProtectedRoutes />}>
+    <Route path="/register" element={<Register />} />
+    {/* <Route element={<ProtectedRoutes />}>
       <Route path="/dashboard" element={<Dashboard />} />
     </Route> */}
     <Route path="*" element={<NotFoundPage />} />
