@@ -1,12 +1,17 @@
-import { FourHundredFour, LinkStyle, NotFound } from "./style";
+import {
+  FourHundredFour,
+  LinkStyle,
+  NotFound,
+  NotFoundContainer,
+} from "./style";
 
 const NotFoundPage = () => {
   return (
-    <>
+    <NotFoundContainer>
       <FourHundredFour>404</FourHundredFour>
       <NotFound>Not Found Page</NotFound>
       <LinkStyle to="/">Go to Home</LinkStyle>
-    </>
+    </NotFoundContainer>
   );
 };
 
