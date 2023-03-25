@@ -7,7 +7,7 @@ export const HeaderStyle = styled.header`
   display: flex;
   flex-direction: row;
   -webkit-box-pack: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 
   a {
