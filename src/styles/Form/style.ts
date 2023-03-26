@@ -8,10 +8,10 @@ export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
 
   border-radius: 5px;
-  padding: 1rem 0.5rem;
+  padding: 0.6rem 0.5rem;
 
   margin-right: 0;
 
