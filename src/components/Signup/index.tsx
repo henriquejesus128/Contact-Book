@@ -15,8 +15,6 @@ const Signup = () => {
       <InputStyle type="text" id="name" placeholder="Digite aqui seu nome" />
       <LabelStyle htmlFor="email">Email</LabelStyle>
       <InputStyle type="email" id="email" placeholder="Digite aqui seu email" />
-      <LabelStyle htmlFor="photo">Foto</LabelStyle>
-      <InputStyle type="text" id="photo" placeholder="Digite aqui seu email" />
       <LabelStyle htmlFor="password">Senha</LabelStyle>
       <div className="password">
         <InputStyle
@@ -30,7 +28,12 @@ const Signup = () => {
           <FaEye onClick={() => setShowPassword(false)} />
         )}
       </div>
-
+      <LabelStyle htmlFor="photo">Foto</LabelStyle>
+      <InputStyle
+        type="text"
+        id="photo"
+        placeholder="Digite aqui seu a url da sua foto"
+      />
       <LabelStyle htmlFor="phone">Telefone</LabelStyle>
       <InputStyle
         type="tel"
