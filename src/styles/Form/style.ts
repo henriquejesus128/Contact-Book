@@ -11,7 +11,7 @@ export const FormStyle = styled.form`
   gap: 1rem;
 
   border-radius: 5px;
-  padding: 34px 0.5rem;
+  padding: 1rem 0.5rem;
 
   margin-right: 0;
 
