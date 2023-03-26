@@ -26,7 +26,7 @@ const Login = () => {
         placeholder="Digite aqui seu email"
         {...register(`email`)}
       />
-      <span>{errors.email?message}</span>
+      {/* <span>{errors.email?message}</span> */}
       <LabelStyle htmlFor="password">Senha</LabelStyle>
       <div className="password">
         <InputStyle
@@ -41,7 +41,7 @@ const Login = () => {
           <FaEye onClick={() => setShowPassword(false)} />
         )}
       </div>
-      <span>{errors.password?message}</span>
+      {/* <span>{errors.password?message}</span> */}
       <ButtonStyle type="submit">Entrar</ButtonStyle>
     </FormStyle>
   );
