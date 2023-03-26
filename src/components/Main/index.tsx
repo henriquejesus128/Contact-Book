@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Login from "../Login";
+import Signup from "../Signup";
 import { MainStyle } from "./style";
 
 const Main = () => {
@@ -7,7 +8,7 @@ const Main = () => {
   return (
     <MainStyle>
       {location.pathname === `/register` ? (
-        <h1>Regiter</h1>
+        <Signup />
       ) : location.pathname === `/dashboard` ? (
         <h1>DashBoard</h1>
       ) : (
