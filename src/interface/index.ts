@@ -10,10 +10,17 @@ export interface IAuthContext {
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
   user: IUser;
-  setUser: Dispatch<React.SetStateAction<IUser>>;
+  setUser: Dispatch<SetStateAction<IUser>>;
 }
 
-export interface IUserContext {}
+export interface IUserContext {
+  listUsers: () => Promise<void>;
+  allUsers: IUser[] | null;
+  setAllUsers: Dispatch<SetStateAction<IUser[] | null>>;
+  getRetriverUser: (id: string | number) => Promise<void>;
+  patchUser: (body: IPatchUser) => Promise<void>;
+  deleteUser: () => Promise<void>;
+}
 
 export interface IProviderProps {
   children: ReactNode;
@@ -30,6 +37,14 @@ export interface IReqRegister {
   password: string;
   photo?: string | null;
   phone: string;
+}
+
+export interface IPatchUser {
+  name?: string;
+  email?: string;
+  password?: string;
+  photo?: string | null;
+  phone?: string;
 }
 
 export interface IUser {
