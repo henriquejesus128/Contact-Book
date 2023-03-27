@@ -117,3 +117,7 @@ export interface IToken {
 export interface IContactProps {
   elem: IContact;
 }
+
+export interface IUserProps {
+  elem: IUser;
+}
