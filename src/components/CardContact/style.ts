@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Li = styled.li`
   background-color: var(--grey-4);
-  width: 150px;
+  min-width: 150px;
   min-height: 50px;
   display: flex;
   flex-direction: column;

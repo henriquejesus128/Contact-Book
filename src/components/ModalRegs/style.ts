@@ -8,13 +8,11 @@ export const Headered = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  width: 94.3%;
+  width: 100%;
   padding: 0 1rem;
-  margin-top: -2.1rem;
-  margin-left: -8px;
   border-radius: 5px 5px 0 0;
   @media (min-width: 335px) {
-    width: 95.5%;
+    width: 100%;
   }
 `;
 
