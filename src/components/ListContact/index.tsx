@@ -6,7 +6,7 @@ import { Ul } from "../ListUser/style";
 import ModalEditContact from "../ModalEditContact";
 
 const ListContact = () => {
-  const { allcontact } = useContext(ContactContext);
+  const { allContact } = useContext(ContactContext);
   const { modalEdit } = useContext(ContactContext);
   // user?.techs?.sort((a, b) => a.id < b.id ? 1 : a.id > b.id? -1 : 0);
   return (
@@ -16,7 +16,7 @@ const ListContact = () => {
           <ModalEditContact />
         </ModalContainer>
       )}
-      {allcontact?.map((elem) => (
+      {allContact?.map((elem) => (
         <CardContact key={elem.id} elem={elem} />
       ))}
     </Ul>
