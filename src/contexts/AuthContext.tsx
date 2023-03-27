@@ -6,6 +6,7 @@ import {
   IReqRegister,
   IReqSession,
   IToken,
+  IUser,
 } from "../interface";
 import { instance } from "../services/axios";
 import { Erro, Success } from "../services/toast";
@@ -19,6 +20,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [user, setUser] = useState<IUser>({} as IUser);
 
   const registed = async (data: IReqRegister): Promise<void> => {
     setLoading(true);
@@ -41,6 +43,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
       instance.defaults.headers.common.authorization = `Bearer ${data.token}`;
       localStorage.setItem(`@ContactBook:token`, data.token);
       localStorage.setItem(`@ContactBook:id`, data.user.id);
+      setUser(data.user);
       Success(`✅Usuário logado com sucesso!`);
       navigate(`/dashboard`, { replace: true });
     } catch (error) {
@@ -60,6 +63,8 @@ const AuthProvider = ({ children }: IProviderProps) => {
         setLoading,
         registed,
         session,
+        user,
+        setUser,
       }}
     >
       {children}
