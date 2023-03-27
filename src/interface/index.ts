@@ -111,7 +111,7 @@ export interface IReqContact {
 
 export interface IToken {
   token: string;
-  user: IUser;
+  user_id: string;
 }
 
 export interface IContactProps {
