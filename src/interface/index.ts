@@ -32,8 +32,10 @@ export interface IContactContext {
   deleteContact: (id: string) => Promise<void>;
   contact: IContact;
   setContact: Dispatch<SetStateAction<IContact>>;
-  modalContact: boolean;
-  setModalContact: Dispatch<SetStateAction<boolean>>;
+  modalCreat: boolean;
+  setModalCreat: Dispatch<SetStateAction<boolean>>;
+  modalEdit: boolean;
+  setModalEdit: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IProviderProps {
