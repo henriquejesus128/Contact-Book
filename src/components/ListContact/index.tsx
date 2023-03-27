@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ContactContext } from "../../contexts/ContactContext";
 import { ModalContainer } from "../../styles/Container/style";
-import CardTec from "../Card";
+import CardContact from "../CardContact";
 import { Ul } from "../ListUser/style";
 import ModalEdit from "../ModalEdit";
 
@@ -17,7 +17,7 @@ const ListContact = () => {
         </ModalContainer>
       )}
       {allcontact?.map((elem) => (
-        <CardTec key={elem.id} elem={elem} />
+        <CardContact key={elem.id} elem={elem} />
       ))}
     </Ul>
   );
