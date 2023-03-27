@@ -18,7 +18,8 @@ const ContactProvider = ({ children }: IProviderProps) => {
   const [allcontact, setAllContact] = useState([] as IContact[]);
   const [contact, setContact] = useState<IContact>({} as IContact);
   const { setLoading, token, id } = useContext(AuthContext);
-  const [modalContact, setModalContact] = useState<boolean>(false);
+  const [modalCreat, setModalCreat] = useState<boolean>(false);
+  const [modalEdit, setModalEdit] = useState<boolean>(false);
 
   const listContacts = async () => {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -107,8 +108,10 @@ const ContactProvider = ({ children }: IProviderProps) => {
         retriverContact,
         patchContact,
         deleteContact,
-        modalContact,
-        setModalContact,
+        modalCreat,
+        setModalCreat,
+        modalEdit,
+        setModalEdit,
       }}
     >
       {children}
