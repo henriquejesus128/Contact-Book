@@ -3,7 +3,7 @@ import { ContactContext } from "../../contexts/ContactContext";
 import { ModalContainer } from "../../styles/Container/style";
 import CardContact from "../CardContact";
 import { Ul } from "../ListUser/style";
-import ModalEdit from "../ModalEdit";
+import ModalEditContact from "../ModalEditContact";
 
 const ListContact = () => {
   const { allcontact } = useContext(ContactContext);
@@ -13,7 +13,7 @@ const ListContact = () => {
     <Ul>
       {modalEdit && (
         <ModalContainer>
-          <ModalEdit />
+          <ModalEditContact />
         </ModalContainer>
       )}
       {allcontact?.map((elem) => (
