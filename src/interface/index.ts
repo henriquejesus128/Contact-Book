@@ -9,7 +9,11 @@ export interface IAuthContext {
   setShowPassword: Dispatch<SetStateAction<boolean>>;
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
+  user: IUser;
+  setUser: Dispatch<React.SetStateAction<IUser>>;
 }
+
+export interface IUserContext {}
 
 export interface IProviderProps {
   children: ReactNode;
