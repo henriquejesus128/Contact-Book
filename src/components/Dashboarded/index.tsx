@@ -10,6 +10,7 @@ import { AddContactTitle } from "../AddContact/style";
 import { ModalContainer } from "../../styles/Container/style";
 import { AuthContext } from "../../contexts/AuthContext";
 import img from "../../assets/image.png";
+import ModalEditUser from "../ModalEditUser";
 
 const Dashboarded = () => {
   const { allcontact, modalEdit, setModalEdit } = useContext(ContactContext);
@@ -19,7 +20,7 @@ const Dashboarded = () => {
     <ContainerDash onClick={() => [setModalEdit(true)]}>
       {modalEdit && (
         <ModalContainer>
-          <ModalEditContact />
+          <ModalEditUser />
         </ModalContainer>
       )}
       <DashSection>
