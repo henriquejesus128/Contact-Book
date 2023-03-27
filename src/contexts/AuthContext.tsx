@@ -42,8 +42,9 @@ const AuthProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.post<IToken>("/session", body);
       instance.defaults.headers.common.authorization = `Bearer ${data.token}`;
       localStorage.setItem(`@ContactBook:token`, data.token);
-      localStorage.setItem(`@ContactBook:id`, data.user.id);
-      setUser(data.user);
+      localStorage.setItem(`@ContactBook:id`, data.user_id);
+      const resp = await instance.get<IUser>(`/profile`);
+      setUser(resp.data);
       Success(`✅Usuário logado com sucesso!`);
       navigate(`/dashboard`, { replace: true });
     } catch (error) {
