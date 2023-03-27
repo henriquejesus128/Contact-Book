@@ -9,7 +9,7 @@ export const UserContext = createContext({} as IUserContext);
 
 const UserProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
-  const { setLoading, token, id, setUser } = useContext(AuthContext);
+  const { setLoading, token, setUser } = useContext(AuthContext);
   const [allUsers, setAllUsers] = useState<IUser[] | null>(null);
 
   useEffect(() => {
