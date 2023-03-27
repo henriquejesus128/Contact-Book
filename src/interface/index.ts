@@ -20,6 +20,8 @@ export interface IUserContext {
   getRetriverUser: (id: string | number) => Promise<void>;
   patchUser: (body: IPatchUser) => Promise<void>;
   deleteUser: () => Promise<void>;
+  modalEditUser: boolean;
+  setModalEditUser: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IContactContext {
