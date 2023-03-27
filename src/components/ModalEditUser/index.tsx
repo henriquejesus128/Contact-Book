@@ -1,44 +1,45 @@
 import { ButtonStyle } from "../../styles/Button/style";
 import { FormStyle } from "../../styles/Form/style";
-import { ModalRegsContBtn, ModalRegsHeader, ModalRegsTitle } from "./style";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LabelStyle } from "../../styles/Label/style";
-import { ModalRegsClose } from "../ModalRegs/style";
+import { Close, Headered } from "../ModalRegs/style";
 import { updateContactSchema } from "../../schemas/updateSchema";
 import { ContactContext } from "../../contexts/ContactContext";
-import { IPatchContact } from "../../interface";
+import { IPatchUser } from "../../interface";
 import { InputStyle } from "../../styles/Input/style";
+import { Title } from "../CardContact/style";
+import { UserContext } from "../../contexts/UserContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { ModalRegsContBtn } from "../ModalEditContact/style";
 
 export interface ITechStatus {
   status: string;
 }
 
-const ModalEditContact = () => {
-  const { patchContact, deleteContact, setModalEdit, contact } =
-    useContext(ContactContext);
+const ModalEditUser = () => {
+  const { patchUser, deleteUser } = useContext(UserContext);
+  const { setModalEdit } = useContext(ContactContext);
+  const { showPassword, setShowPassword } = useContext(AuthContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IPatchContact>({
+  } = useForm<IPatchUser>({
     resolver: yupResolver(updateContactSchema),
   });
 
-  const onSubmit = (data: IPatchContact) => patchContact(data, contact.id);
-
   return (
-    <FormStyle onSubmit={handleSubmit(onSubmit)}>
-      <ModalRegsHeader>
-        <ModalRegsTitle>Editar/Deletar Contato</ModalRegsTitle>
-        <ModalRegsClose
-          onClick={(e) => [e.preventDefault(), setModalEdit(false)]}
-        >
+    <FormStyle onSubmit={handleSubmit(patchUser)}>
+      <Headered>
+        <Title>Editar/Deletar User</Title>
+        <Close onClick={(e: any) => [e.preventDefault(), setModalEdit(false)]}>
           x
-        </ModalRegsClose>
-      </ModalRegsHeader>
+        </Close>
+      </Headered>
       <LabelStyle htmlFor="name">Nome</LabelStyle>
       <InputStyle
         type="text"
@@ -55,6 +56,20 @@ const ModalEditContact = () => {
         {...register(`email`)}
       />
       <span>{errors.email?.message}</span>
+      <LabelStyle htmlFor="password">Senha</LabelStyle>
+      <div className="password">
+        <InputStyle
+          type="password"
+          id="password"
+          placeholder="Digite aqui sua senha"
+          {...register(`password`)}
+        />
+        {showPassword === false ? (
+          <FaEyeSlash onClick={() => setShowPassword(true)} />
+        ) : (
+          <FaEye onClick={() => setShowPassword(false)} />
+        )}
+      </div>
       <LabelStyle htmlFor="photo">Foto</LabelStyle>
       <InputStyle
         type="text"
@@ -77,7 +92,7 @@ const ModalEditContact = () => {
         <ButtonStyle
           onClick={(e) => [
             e.preventDefault(),
-            deleteContact(contact.id),
+            deleteUser(),
             setModalEdit(false),
           ]}
         >
@@ -88,4 +103,4 @@ const ModalEditContact = () => {
   );
 };
 
-export default ModalEditContact;
+export default ModalEditUser;
