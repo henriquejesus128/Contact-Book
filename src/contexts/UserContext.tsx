@@ -71,6 +71,7 @@ const UserProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.patch<IUser>("/users", body);
       setUser(data);
       await listUsers();
+      await getMyProfile();
       Success(`✅Usuário editado com sucesso!`);
     } catch (error) {
       Erro("Não foi possivel editar esse usuario❗❗");
@@ -86,6 +87,7 @@ const UserProvider = ({ children }: IProviderProps) => {
       await instance.delete("/users");
       await listUsers();
       Success(`✅Usuário deletado com sucesso!`);
+      navigate(`/`);
     } catch (error) {
       Erro("Não foi possivel desativar esse usuario❗❗");
     } finally {
