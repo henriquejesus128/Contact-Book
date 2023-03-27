@@ -48,6 +48,12 @@ export interface IPatchUser {
   photo?: string | null;
   phone?: string;
 }
+export interface IPatchContact {
+  name?: string;
+  email?: string;
+  photo?: string | null;
+  phone?: string;
+}
 
 export interface IUser {
   id: string;
@@ -69,6 +75,24 @@ export interface IContact {
   phone: string;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface IRespContact {
+  user: IUser;
+  id: string;
+  name: string;
+  email: string;
+  photo?: string | null;
+  phone: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IReqContact {
+  name: string;
+  email: string;
+  photo?: string | null;
+  phone: string;
 }
 
 export interface IToken {
