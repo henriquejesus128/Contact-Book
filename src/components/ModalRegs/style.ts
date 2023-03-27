@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { AddContactAdd } from "../AddContact/style";
 
-export const ModalRegsHeader = styled.div`
+export const Headered = styled.div`
   background-color: var(--grey-2);
   display: flex;
   flex-direction: row;
@@ -17,10 +17,8 @@ export const ModalRegsHeader = styled.div`
     width: 95.5%;
   }
 `;
-export const ModalRegsTitle = styled.h2`
-  color: var(--grey-0);
-`;
-export const ModalRegsClose = styled(AddContactAdd)`
+
+export const Close = styled(AddContactAdd)`
   border-radius: 50%;
   background-color: var(--negative);
   font-size: 1rem;

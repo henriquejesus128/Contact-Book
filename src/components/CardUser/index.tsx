@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { ContactContext } from "../../contexts/ContactContext";
 import { IUserProps } from "../../interface";
-import { Headline, Title, CardShow, Li } from "./style";
 import img from "../../assets/image.png";
+import { CardShow, Headline, Li, Title } from "../CardContact/style";
 
 const CardUser = ({ elem }: IUserProps) => {
   const { setContact, setModalEdit } = useContext(ContactContext);

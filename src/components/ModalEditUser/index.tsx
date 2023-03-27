@@ -1,35 +1,44 @@
 import { ButtonStyle } from "../../styles/Button/style";
 import { FormStyle } from "../../styles/Form/style";
-import { InputStyle } from "../../styles/Input/style";
-import { Close, Headered } from "./style";
+import { ModalRegsContBtn, ModalRegsHeader, ModalRegsTitle } from "./style";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LabelStyle } from "../../styles/Label/style";
-import { IContact } from "../../interface";
-import { contactSchema } from "../../schemas/contactSchema";
+import { ModalRegsClose } from "../ModalRegs/style";
+import { updateContactSchema } from "../../schemas/updateSchema";
 import { ContactContext } from "../../contexts/ContactContext";
-import { Title } from "../CardContact/style";
+import { IPatchContact } from "../../interface";
+import { InputStyle } from "../../styles/Input/style";
 
-const ModalRegs = () => {
-  const { createContact, setModalCreat } = useContext(ContactContext);
+export interface ITechStatus {
+  status: string;
+}
+
+const ModalEditContact = () => {
+  const { patchContact, deleteContact, setModalEdit, contact } =
+    useContext(ContactContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IContact>({
-    resolver: yupResolver(contactSchema),
+  } = useForm<IPatchContact>({
+    resolver: yupResolver(updateContactSchema),
   });
 
+  const onSubmit = (data: IPatchContact) => patchContact(data, contact.id);
+
   return (
-    <FormStyle onSubmit={handleSubmit(createContact)}>
-      <Headered>
-        <Title>Cadastrar Contato</Title>
-        <Close onClick={(e: any) => [e.preventDefault(), setModalCreat(false)]}>
+    <FormStyle onSubmit={handleSubmit(onSubmit)}>
+      <ModalRegsHeader>
+        <ModalRegsTitle>Editar/Deletar Contato</ModalRegsTitle>
+        <ModalRegsClose
+          onClick={(e) => [e.preventDefault(), setModalEdit(false)]}
+        >
           x
-        </Close>
-      </Headered>
+        </ModalRegsClose>
+      </ModalRegsHeader>
       <LabelStyle htmlFor="name">Nome</LabelStyle>
       <InputStyle
         type="text"
@@ -63,9 +72,20 @@ const ModalRegs = () => {
         {...register(`phone`)}
       />
       <span>{errors.phone?.message}</span>
-      <ButtonStyle type="submit">Cadastrar Tecnologia</ButtonStyle>
+      <ModalRegsContBtn>
+        <ButtonStyle type="submit">Salvar alterações</ButtonStyle>
+        <ButtonStyle
+          onClick={(e) => [
+            e.preventDefault(),
+            deleteContact(contact.id),
+            setModalEdit(false),
+          ]}
+        >
+          Excluir
+        </ButtonStyle>
+      </ModalRegsContBtn>
     </FormStyle>
   );
 };
 
-export default ModalRegs;
+export default ModalEditContact;
