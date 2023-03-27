@@ -22,6 +22,8 @@ export interface IUserContext {
   deleteUser: () => Promise<void>;
 }
 
+export interface IContactContext {}
+
 export interface IProviderProps {
   children: ReactNode;
 }
