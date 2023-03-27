@@ -14,9 +14,11 @@ import ModalEditUser from "../ModalEditUser";
 import { ButtonStyle } from "../../styles/Button/style";
 
 const Dashboarded = () => {
-  const { allcontact, setModalEdit } = useContext(ContactContext);
+  const { allContact, setModalEdit } = useContext(ContactContext);
   const { allUsers, modalEditUser } = useContext(UserContext);
   const { user } = useContext(AuthContext);
+  console.log(allUsers);
+
   return (
     <ContainerDash>
       {modalEditUser && (
@@ -35,7 +37,7 @@ const Dashboarded = () => {
       </DashSection>
       <DashContDiv>
         <AddContact />
-        {allcontact?.length !== 0 ? <ListContact /> : <CouldNotFind />}
+        {allContact?.length !== 0 ? <ListContact /> : <CouldNotFind />}
         <AddContactTitle>USUARIOS</AddContactTitle>
         {allUsers?.length !== 0 ? <ListUser /> : <CouldNotFind />}
       </DashContDiv>
