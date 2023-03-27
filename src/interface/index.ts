@@ -113,3 +113,7 @@ export interface IToken {
   token: string;
   user: IUser;
 }
+
+export interface IContactProps {
+  elem: IContact;
+}
