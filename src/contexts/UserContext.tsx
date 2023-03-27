@@ -37,7 +37,7 @@ const UserProvider = ({ children }: IProviderProps) => {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
     setLoading(true);
     try {
-      const { data } = await instance.get<IUser>(`/users/${id}`);
+      const { data } = await instance.get<IUser>(`/profile`);
       setUser(data);
     } catch (error) {
       Erro("Sessão expirada! Faça login novamente❗❗");
