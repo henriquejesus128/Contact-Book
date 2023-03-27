@@ -35,6 +35,7 @@ const UserProvider = ({ children }: IProviderProps) => {
 
   const getMyProfile = async () => {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
+    setLoading(true);
     try {
       const { data } = await instance.get<IUser>(`/users/${id}`);
       setUser(data);
@@ -49,9 +50,11 @@ const UserProvider = ({ children }: IProviderProps) => {
 
   const getRetriverUser = async (id: number | string) => {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
+    setLoading(true);
     try {
       const { data } = await instance.get<IUser>(`/users/${id}`);
       setUser(data);
+      Success(`✅Usuário encontrado com sucesso!`);
     } catch (error) {
       Erro("Não foi possivel encontrar esse usuario❗❗");
       localStorage.clear();
@@ -67,6 +70,8 @@ const UserProvider = ({ children }: IProviderProps) => {
     try {
       const { data } = await instance.patch<IUser>("/users", body);
       setUser(data);
+      await listUsers();
+      Success(`✅Usuário editado com sucesso!`);
     } catch (error) {
       Erro("Não foi possivel editar esse usuario❗❗");
     } finally {
@@ -80,6 +85,7 @@ const UserProvider = ({ children }: IProviderProps) => {
     try {
       await instance.delete("/users");
       await listUsers();
+      Success(`✅Usuário deletado com sucesso!`);
     } catch (error) {
       Erro("Não foi possivel desativar esse usuario❗❗");
     } finally {
