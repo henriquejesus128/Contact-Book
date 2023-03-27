@@ -40,7 +40,7 @@ const Signup = () => {
       <LabelStyle htmlFor="password">Senha</LabelStyle>
       <div className="password">
         <InputStyle
-          type="password"
+          type={showPassword === false ? "password" : "text"}
           id="password"
           placeholder="Digite aqui sua senha"
           {...register(`password`)}
