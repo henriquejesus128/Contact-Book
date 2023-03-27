@@ -1,15 +1,16 @@
 import { ButtonStyle } from "../../styles/Button/style";
 import { FormStyle } from "../../styles/Form/style";
-import { ModalRegsContBtn, ModalRegsHeader, ModalRegsTitle } from "./style";
+import { ModalRegsContBtn } from "./style";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LabelStyle } from "../../styles/Label/style";
-import { ModalRegsClose } from "../ModalRegs/style";
+import { Close, Headered } from "../ModalRegs/style";
 import { updateContactSchema } from "../../schemas/updateSchema";
 import { ContactContext } from "../../contexts/ContactContext";
 import { IPatchContact } from "../../interface";
 import { InputStyle } from "../../styles/Input/style";
+import { Title } from "../CardContact/style";
 
 export interface ITechStatus {
   status: string;
@@ -31,14 +32,12 @@ const ModalEditContact = () => {
 
   return (
     <FormStyle onSubmit={handleSubmit(onSubmit)}>
-      <ModalRegsHeader>
-        <ModalRegsTitle>Editar/Deletar Contato</ModalRegsTitle>
-        <ModalRegsClose
-          onClick={(e) => [e.preventDefault(), setModalEdit(false)]}
-        >
+      <Headered>
+        <Title>Editar/Deletar Contato</Title>
+        <Close onClick={(e: any) => [e.preventDefault(), setModalEdit(false)]}>
           x
-        </ModalRegsClose>
-      </ModalRegsHeader>
+        </Close>
+      </Headered>
       <LabelStyle htmlFor="name">Nome</LabelStyle>
       <InputStyle
         type="text"
