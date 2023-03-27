@@ -22,7 +22,19 @@ export interface IUserContext {
   deleteUser: () => Promise<void>;
 }
 
-export interface IContactContext {}
+export interface IContactContext {
+  allcontact: IContact[] | null;
+  setAllContact: Dispatch<SetStateAction<IContact[]>>;
+  listContacts: () => Promise<void>;
+  createContact: (data: IReqContact) => Promise<void>;
+  retriverContact: (id: string) => Promise<void>;
+  patchContact: (body: IPatchContact, id: string) => Promise<void>;
+  deleteContact: (id: string) => Promise<void>;
+  contact: IContact;
+  setContact: Dispatch<SetStateAction<IContact>>;
+  modalContact: boolean;
+  setModalContact: Dispatch<SetStateAction<boolean>>;
+}
 
 export interface IProviderProps {
   children: ReactNode;
