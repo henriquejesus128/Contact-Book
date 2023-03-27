@@ -5,11 +5,11 @@ export const Ul = styled.ul`
   border-radius: 4px;
   height: max-content;
   max-height: 250px;
-  width: 100%;
+  width: 95%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   gap: 1rem;
   overflow: auto;
   ::-webkit-scrollbar {
