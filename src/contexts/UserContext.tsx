@@ -17,6 +17,7 @@ const UserProvider = ({ children }: IProviderProps) => {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
     if (token) {
       getMyProfile();
+      listUsers();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
