@@ -11,26 +11,33 @@ import { ModalContainer } from "../../styles/Container/style";
 import { AuthContext } from "../../contexts/AuthContext";
 import img from "../../assets/image.png";
 import ModalEditUser from "../ModalEditUser";
+import { ButtonStyle } from "../../styles/Button/style";
 
 const Dashboarded = () => {
-  const { allcontact, modalEdit, setModalEdit } = useContext(ContactContext);
-  const { allUsers } = useContext(UserContext);
+  const { allContact, setModalEdit } = useContext(ContactContext);
+  const { allUsers, modalEditUser } = useContext(UserContext);
   const { user } = useContext(AuthContext);
+  console.log(allUsers);
+
   return (
-    <ContainerDash onClick={() => [setModalEdit(true)]}>
-      {modalEdit && (
+    <ContainerDash>
+      {modalEditUser && (
         <ModalContainer>
           <ModalEditUser />
         </ModalContainer>
       )}
       <DashSection>
-        <h1>{user.name}</h1>
-        <p>{user.email}</p>
+        <div>
+          <h1>{user.name}</h1>
+          <p>{user.email}</p>
+          <p>{user.phone}</p>
+          <ButtonStyle onClick={() => [setModalEdit(true)]}>Editar</ButtonStyle>
+        </div>
         <img src={user.photo ? user.photo : img} alt={user.name} />
       </DashSection>
       <DashContDiv>
         <AddContact />
-        {allcontact?.length !== 0 ? <ListContact /> : <CouldNotFind />}
+        {allContact?.length !== 0 ? <ListContact /> : <CouldNotFind />}
         <AddContactTitle>USUARIOS</AddContactTitle>
         {allUsers?.length !== 0 ? <ListUser /> : <CouldNotFind />}
       </DashContDiv>

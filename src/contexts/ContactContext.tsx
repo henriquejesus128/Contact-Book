@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import {
   IContact,
   IContactContext,
@@ -15,11 +15,19 @@ import { Erro, Success } from "../services/toast";
 export const ContactContext = createContext({} as IContactContext);
 
 const ContactProvider = ({ children }: IProviderProps) => {
-  const [allcontact, setAllContact] = useState([] as IContact[]);
+  const [allContact, setAllContact] = useState([] as IContact[]);
   const [contact, setContact] = useState<IContact>({} as IContact);
   const { setLoading, token, id } = useContext(AuthContext);
   const [modalCreat, setModalCreat] = useState<boolean>(false);
   const [modalEdit, setModalEdit] = useState<boolean>(false);
+
+  useEffect(() => {
+    instance.defaults.headers.common.authorization = `Bearer ${token}`;
+    if (token) {
+      listContacts();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const listContacts = async () => {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -99,7 +107,7 @@ const ContactProvider = ({ children }: IProviderProps) => {
   return (
     <ContactContext.Provider
       value={{
-        allcontact,
+        allContact,
         setAllContact,
         contact,
         setContact,

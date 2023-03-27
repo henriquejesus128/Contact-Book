@@ -10,7 +10,7 @@ const Header = () => {
         <Link to="/">Login</Link>
       ) : location.pathname === `/dashboard` ? (
         <Link to="/" onClick={() => localStorage.clear()}>
-          Login
+          Sair
         </Link>
       ) : (
         <Link to="/register">Cadastrar</Link>

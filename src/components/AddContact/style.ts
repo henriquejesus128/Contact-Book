@@ -10,6 +10,7 @@ export const AddContactStyle = styled.div`
 `;
 export const AddContactTitle = styled.h2`
   color: var(--grey-0);
+  margin: 1rem 0;
 `;
 export const AddContactAdd = styled.button`
   display: flex;

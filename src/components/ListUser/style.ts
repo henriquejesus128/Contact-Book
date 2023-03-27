@@ -7,9 +7,9 @@ export const Ul = styled.ul`
   max-height: 250px;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.5rem;
   gap: 1rem;
   overflow: auto;
   ::-webkit-scrollbar {
