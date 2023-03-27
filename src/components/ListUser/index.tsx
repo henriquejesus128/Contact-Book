@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import CardTec from "../Card";
+import CardUser from "../CardUser";
 import { Ul } from "./style";
 
 const ListUser = () => {
@@ -9,7 +9,7 @@ const ListUser = () => {
   return (
     <Ul>
       {allUsers?.map((elem) => (
-        <CardTec key={elem.id} elem={elem} />
+        <CardUser key={elem.id} elem={elem} />
       ))}
     </Ul>
   );
