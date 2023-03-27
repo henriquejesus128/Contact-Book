@@ -11,6 +11,7 @@ const UserProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
   const { setLoading, token, setUser } = useContext(AuthContext);
   const [allUsers, setAllUsers] = useState<IUser[] | null>(null);
+  const [modalEditUser, setModalEditUser] = useState<boolean>(false);
 
   useEffect(() => {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -104,6 +105,8 @@ const UserProvider = ({ children }: IProviderProps) => {
         getRetriverUser,
         patchUser,
         deleteUser,
+        modalEditUser,
+        setModalEditUser,
       }}
     >
       {children}
