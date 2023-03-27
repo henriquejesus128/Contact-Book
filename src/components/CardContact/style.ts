@@ -2,23 +2,26 @@ import styled from "styled-components";
 
 export const Li = styled.li`
   background-color: var(--grey-4);
-  width: 90%;
+  width: 150px;
   min-height: 50px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 0.2rem;
   border-radius: 4px;
+  img {
+    width: 100%;
+    height: 140px;
+  }
 `;
 export const Title = styled.h2`
-  max-width: 100px;
   color: var(--grey-0);
-  margin-left: 1rem;
   text-overflow: ellipsis;
 `;
 export const Headline = styled.p`
   color: var(--grey-1);
+  text-overflow: ellipsis;
 `;
 
 export const CardShow = styled.button`
