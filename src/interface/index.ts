@@ -25,7 +25,7 @@ export interface IUserContext {
 }
 
 export interface IContactContext {
-  allcontact: IContact[] | null;
+  allContact: IContact[] | null;
   setAllContact: Dispatch<SetStateAction<IContact[]>>;
   listContacts: () => Promise<void>;
   createContact: (data: IReqContact) => Promise<void>;
