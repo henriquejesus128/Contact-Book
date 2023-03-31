@@ -83,7 +83,6 @@ const UserProvider = ({ children }: IProviderProps) => {
     if (body.phone?.length === 0) {
       delete body.phone;
     }
-    console.log(body);
     setLoading(true);
     try {
       const { data } = await instance.patch<IUser>("/users", body);
