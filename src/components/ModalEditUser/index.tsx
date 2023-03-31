@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LabelStyle } from "../../styles/Label/style";
 import { Close, Headered } from "../ModalRegs/style";
 import { updateContactSchema } from "../../schemas/updateSchema";
-import { ContactContext } from "../../contexts/ContactContext";
 import { IPatchUser } from "../../interface";
 import { InputStyle } from "../../styles/Input/style";
 import { Title } from "../CardContact/style";
@@ -15,13 +14,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ModalRegsContBtn } from "../ModalEditContact/style";
 
-export interface ITechStatus {
-  status: string;
-}
-
 const ModalEditUser = () => {
-  const { patchUser, deleteUser } = useContext(UserContext);
-  const { setModalEdit } = useContext(ContactContext);
+  const { patchUser, deleteUser, setModalEditUser } = useContext(UserContext);
   const { showPassword, setShowPassword } = useContext(AuthContext);
 
   const {
@@ -36,7 +30,9 @@ const ModalEditUser = () => {
     <FormStyle onSubmit={handleSubmit(patchUser)}>
       <Headered>
         <Title>Editar/Deletar User</Title>
-        <Close onClick={(e: any) => [e.preventDefault(), setModalEdit(false)]}>
+        <Close
+          onClick={(e: any) => [e.preventDefault(), setModalEditUser(false)]}
+        >
           x
         </Close>
       </Headered>
@@ -93,7 +89,7 @@ const ModalEditUser = () => {
           onClick={(e) => [
             e.preventDefault(),
             deleteUser(),
-            setModalEdit(false),
+            setModalEditUser(false),
           ]}
         >
           Excluir

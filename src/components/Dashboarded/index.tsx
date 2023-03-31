@@ -14,10 +14,9 @@ import ModalEditUser from "../ModalEditUser";
 import { ButtonStyle } from "../../styles/Button/style";
 
 const Dashboarded = () => {
-  const { allContact, setModalEdit } = useContext(ContactContext);
-  const { allUsers, modalEditUser } = useContext(UserContext);
+  const { allContact } = useContext(ContactContext);
+  const { allUsers, modalEditUser, setModalEditUser } = useContext(UserContext);
   const { user } = useContext(AuthContext);
-  console.log(allUsers);
 
   return (
     <ContainerDash>
@@ -31,7 +30,9 @@ const Dashboarded = () => {
           <h1>{user.name}</h1>
           <p>{user.email}</p>
           <p>{user.phone}</p>
-          <ButtonStyle onClick={() => [setModalEdit(true)]}>Editar</ButtonStyle>
+          <ButtonStyle onClick={() => [setModalEditUser(true)]}>
+            Editar
+          </ButtonStyle>
         </div>
         <img src={user.photo ? user.photo : img} alt={user.name} />
       </DashSection>
