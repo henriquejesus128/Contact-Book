@@ -17,7 +17,6 @@ const Dashboarded = () => {
   const { allContact, setModalEdit } = useContext(ContactContext);
   const { allUsers, modalEditUser } = useContext(UserContext);
   const { user } = useContext(AuthContext);
-  console.log(allUsers);
 
   return (
     <ContainerDash>
