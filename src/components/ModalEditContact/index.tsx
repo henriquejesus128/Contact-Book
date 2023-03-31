@@ -12,10 +12,6 @@ import { IPatchContact } from "../../interface";
 import { InputStyle } from "../../styles/Input/style";
 import { Title } from "../CardContact/style";
 
-export interface ITechStatus {
-  status: string;
-}
-
 const ModalEditContact = () => {
   const { patchContact, deleteContact, setModalEdit, contact } =
     useContext(ContactContext);

@@ -77,6 +77,18 @@ const ContactProvider = ({ children }: IProviderProps) => {
 
   const patchContact = async (body: IPatchContact, id: string) => {
     instance.defaults.headers.common.authorization = `Bearer ${token}`;
+    if (body.email?.length === 0) {
+      delete body.email;
+    }
+    if (body.name?.length === 0) {
+      delete body.name;
+    }
+    if (body.photo?.length === 0) {
+      delete body.photo;
+    }
+    if (body.phone?.length === 0) {
+      delete body.phone;
+    }
     setLoading(true);
     try {
       const { data } = await instance.patch<IContact>(`contacts/${id}`, body);
@@ -87,6 +99,7 @@ const ContactProvider = ({ children }: IProviderProps) => {
       Erro("Não foi possivel editar esse usuario❗❗");
     } finally {
       setLoading(false);
+      setModalEdit(false);
     }
   };
 
