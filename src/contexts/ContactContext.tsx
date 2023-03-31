@@ -87,6 +87,7 @@ const ContactProvider = ({ children }: IProviderProps) => {
       Erro("Não foi possivel editar esse usuario❗❗");
     } finally {
       setLoading(false);
+      setModalEdit(false);
     }
   };
 
