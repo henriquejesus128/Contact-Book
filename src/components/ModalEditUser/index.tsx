@@ -14,10 +14,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ModalRegsContBtn } from "../ModalEditContact/style";
 
-export interface ITechStatus {
-  status: string;
-}
-
 const ModalEditUser = () => {
   const { patchUser, deleteUser, setModalEditUser } = useContext(UserContext);
   const { showPassword, setShowPassword } = useContext(AuthContext);
