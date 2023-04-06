@@ -123,3 +123,7 @@ export interface IContactProps {
 export interface IUserProps {
   elem: IUser;
 }
+
+export interface IAxiosData {
+  message: string;
+}
