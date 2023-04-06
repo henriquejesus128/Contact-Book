@@ -1,9 +1,16 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { IPatchUser, IProviderProps, IUser, IUserContext } from "../interface";
+import {
+  IAxiosData,
+  IPatchUser,
+  IProviderProps,
+  IUser,
+  IUserContext,
+} from "../interface";
 import { instance } from "../services/axios";
 import { AuthContext } from "./AuthContext";
 import { Erro, Success } from "../services/toast";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -28,8 +35,11 @@ const UserProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.get<IUser[]>("/users");
       setAllUsers(data);
       Success(`✅Usuários listados com sucesso!`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -41,8 +51,12 @@ const UserProvider = ({ children }: IProviderProps) => {
     try {
       const { data } = await instance.get<IUser>(`/profile`);
       setUser(data);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
+
       localStorage.clear();
       navigate("/");
     } finally {
@@ -57,8 +71,12 @@ const UserProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.get<IUser>(`/users/${id}`);
       setUser(data);
       Success(`✅Usuário encontrado com sucesso!`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
+
       localStorage.clear();
       navigate("/");
     } finally {
@@ -90,8 +108,11 @@ const UserProvider = ({ children }: IProviderProps) => {
       await listUsers();
       await getMyProfile();
       Success(`✅Usuário editado com sucesso!`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
       setModalEditUser(false);
@@ -106,8 +127,11 @@ const UserProvider = ({ children }: IProviderProps) => {
       await listUsers();
       Success(`✅Usuário deletado com sucesso!`);
       navigate(`/`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
