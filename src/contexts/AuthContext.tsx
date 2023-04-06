@@ -29,8 +29,8 @@ const AuthProvider = ({ children }: IProviderProps) => {
       await instance.post<IReqRegister>("/users", data);
       Success(`✅Usuário cadastrado com sucesso!`);
       navigate(`/`);
-    } catch (error) {
-      Erro("Falha ao cadastrar o usuario❗❗");
+    } catch (error: any) {
+      Erro(`${error.response?.data.message}❗❗`);
     } finally {
       setLoading(false);
     }
@@ -47,8 +47,8 @@ const AuthProvider = ({ children }: IProviderProps) => {
       setUser(resp.data);
       Success(`✅Usuário logado com sucesso!`);
       navigate(`/dashboard`, { replace: true });
-    } catch (error) {
-      Erro("Falha ao efetuar o login do usuario❗❗");
+    } catch (error: any) {
+      Erro(`${error.response?.data.message}❗❗`);
     } finally {
       setLoading(false);
     }

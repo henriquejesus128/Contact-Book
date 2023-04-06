@@ -36,8 +36,8 @@ const ContactProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.get<IContact[]>("/contacts");
       setAllContact(data);
       Success(`✅Contatos listados com sucesso!`);
-    } catch (error) {
-      Erro("Falha ao listar todos os contatos❗❗");
+    } catch (error: any) {
+      Erro(`${error.response?.data.message}❗❗`);
     } finally {
       setLoading(false);
     }
@@ -54,8 +54,8 @@ const ContactProvider = ({ children }: IProviderProps) => {
       await instance.post<IRespContact>("/contacts", body);
       Success(`✅Contatos criado com sucesso!`);
       await listContacts();
-    } catch (error) {
-      Erro("Falha ao criar o contato❗❗");
+    } catch (error: any) {
+      Erro(`${error.response?.data.message}❗❗`);
     } finally {
       setLoading(false);
     }
@@ -68,8 +68,8 @@ const ContactProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.get<IContact>(`/contacts/${id}`);
       setContact(data);
       Success(`✅Contato encontrado com sucesso!`);
-    } catch (error) {
-      Erro("Não foi possivel encontrar esse contato❗❗");
+    } catch (error: any) {
+      Erro(`${error.response?.data.message}❗❗`);
     } finally {
       setLoading(false);
     }
@@ -95,8 +95,8 @@ const ContactProvider = ({ children }: IProviderProps) => {
       setContact(data);
       await listContacts();
       Success(`✅Contatos editado com sucesso!`);
-    } catch (error) {
-      Erro("Não foi possivel editar esse usuario❗❗");
+    } catch (error: any) {
+      Erro(`${error.response?.data.message}❗❗`);
     } finally {
       setLoading(false);
       setModalEdit(false);
@@ -110,8 +110,8 @@ const ContactProvider = ({ children }: IProviderProps) => {
       await instance.delete(`/contacts/${id}`);
       await listContacts();
       Success(`✅Contatos deletado com sucesso!`);
-    } catch (error) {
-      Erro("Não foi possivel deletar esse contato❗❗");
+    } catch (error: any) {
+      Erro(`${error.response?.data.message}❗❗`);
     } finally {
       setLoading(false);
     }
