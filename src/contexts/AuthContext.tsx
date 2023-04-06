@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   IAuthContext,
+  IAxiosData,
   IProviderProps,
   IReqRegister,
   IReqSession,
@@ -10,6 +11,7 @@ import {
 } from "../interface";
 import { instance } from "../services/axios";
 import { Erro, Success } from "../services/toast";
+import axios from "axios";
 
 export const AuthContext = createContext({} as IAuthContext);
 
@@ -29,8 +31,11 @@ const AuthProvider = ({ children }: IProviderProps) => {
       await instance.post<IReqRegister>("/users", data);
       Success(`✅Usuário cadastrado com sucesso!`);
       navigate(`/`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -47,8 +52,11 @@ const AuthProvider = ({ children }: IProviderProps) => {
       setUser(resp.data);
       Success(`✅Usuário logado com sucesso!`);
       navigate(`/dashboard`, { replace: true });
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
