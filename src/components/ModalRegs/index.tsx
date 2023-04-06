@@ -59,7 +59,7 @@ const ModalRegs = () => {
         type="tel"
         id="phone"
         pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}"
-        placeholder="Digite aqui seu Telefone de contato"
+        placeholder="Ex: 00-00000-0000"
         {...register(`phone`)}
       />
       <span>{errors.phone?.message}</span>
