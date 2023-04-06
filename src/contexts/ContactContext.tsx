@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect } from "react";
 import {
+  IAxiosData,
   IContact,
   IContactContext,
   IPatchContact,
@@ -11,6 +12,7 @@ import { useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { instance } from "../services/axios";
 import { Erro, Success } from "../services/toast";
+import axios from "axios";
 
 export const ContactContext = createContext({} as IContactContext);
 
@@ -36,8 +38,11 @@ const ContactProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.get<IContact[]>("/contacts");
       setAllContact(data);
       Success(`✅Contatos listados com sucesso!`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -54,8 +59,11 @@ const ContactProvider = ({ children }: IProviderProps) => {
       await instance.post<IRespContact>("/contacts", body);
       Success(`✅Contatos criado com sucesso!`);
       await listContacts();
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -68,8 +76,11 @@ const ContactProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.get<IContact>(`/contacts/${id}`);
       setContact(data);
       Success(`✅Contato encontrado com sucesso!`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -95,8 +106,11 @@ const ContactProvider = ({ children }: IProviderProps) => {
       setContact(data);
       await listContacts();
       Success(`✅Contatos editado com sucesso!`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
       setModalEdit(false);
@@ -110,8 +124,11 @@ const ContactProvider = ({ children }: IProviderProps) => {
       await instance.delete(`/contacts/${id}`);
       await listContacts();
       Success(`✅Contatos deletado com sucesso!`);
-    } catch (error: any) {
-      Erro(`${error.response?.data.message}❗❗`);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const data = error.response?.data as IAxiosData;
+        Erro(`${data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
