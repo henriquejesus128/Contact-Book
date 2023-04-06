@@ -10,6 +10,7 @@ import {
 } from "../interface";
 import { instance } from "../services/axios";
 import { Erro, Success } from "../services/toast";
+import axios from "axios";
 
 export const AuthContext = createContext({} as IAuthContext);
 
@@ -29,8 +30,10 @@ const AuthProvider = ({ children }: IProviderProps) => {
       await instance.post<IReqRegister>("/users", data);
       Success(`✅Usuário cadastrado com sucesso!`);
       navigate(`/`);
-    } catch (error) {
-      Erro("Falha ao cadastrar o usuario❗❗");
+    } catch (error: Erro) {
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -48,7 +51,9 @@ const AuthProvider = ({ children }: IProviderProps) => {
       Success(`✅Usuário logado com sucesso!`);
       navigate(`/dashboard`, { replace: true });
     } catch (error) {
-      Erro("Falha ao efetuar o login do usuario❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
