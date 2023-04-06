@@ -4,6 +4,7 @@ import { instance } from "../services/axios";
 import { AuthContext } from "./AuthContext";
 import { Erro, Success } from "../services/toast";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -29,7 +30,9 @@ const UserProvider = ({ children }: IProviderProps) => {
       setAllUsers(data);
       Success(`✅Usuários listados com sucesso!`);
     } catch (error) {
-      Erro("Falha ao listar todos os usuario❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -42,7 +45,9 @@ const UserProvider = ({ children }: IProviderProps) => {
       const { data } = await instance.get<IUser>(`/profile`);
       setUser(data);
     } catch (error) {
-      Erro("Sessão expirada! Faça login novamente❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
       localStorage.clear();
       navigate("/");
     } finally {
@@ -58,7 +63,9 @@ const UserProvider = ({ children }: IProviderProps) => {
       setUser(data);
       Success(`✅Usuário encontrado com sucesso!`);
     } catch (error) {
-      Erro("Não foi possivel encontrar esse usuario❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
       localStorage.clear();
       navigate("/");
     } finally {
@@ -91,7 +98,9 @@ const UserProvider = ({ children }: IProviderProps) => {
       await getMyProfile();
       Success(`✅Usuário editado com sucesso!`);
     } catch (error) {
-      Erro("Não foi possivel editar esse usuario❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
       setModalEditUser(false);
@@ -107,7 +116,9 @@ const UserProvider = ({ children }: IProviderProps) => {
       Success(`✅Usuário deletado com sucesso!`);
       navigate(`/`);
     } catch (error) {
-      Erro("Não foi possivel desativar esse usuario❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }

@@ -11,6 +11,7 @@ import { useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { instance } from "../services/axios";
 import { Erro, Success } from "../services/toast";
+import axios from "axios";
 
 export const ContactContext = createContext({} as IContactContext);
 
@@ -37,7 +38,9 @@ const ContactProvider = ({ children }: IProviderProps) => {
       setAllContact(data);
       Success(`✅Contatos listados com sucesso!`);
     } catch (error) {
-      Erro("Falha ao listar todos os contatos❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -55,7 +58,9 @@ const ContactProvider = ({ children }: IProviderProps) => {
       Success(`✅Contatos criado com sucesso!`);
       await listContacts();
     } catch (error) {
-      Erro("Falha ao criar o contato❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
@@ -69,7 +74,9 @@ const ContactProvider = ({ children }: IProviderProps) => {
       setContact(data);
       Success(`✅Contato encontrado com sucesso!`);
     } catch (error) {
-      Erro("Não foi possivel encontrar esse contato❗❗");
+      if (axios.isAxiosError(error)) {
+        Erro(`${error.response?.data.message}❗❗`);
+      }
     } finally {
       setLoading(false);
     }
