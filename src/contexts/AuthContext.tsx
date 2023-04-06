@@ -10,7 +10,6 @@ import {
 } from "../interface";
 import { instance } from "../services/axios";
 import { Erro, Success } from "../services/toast";
-import axios from "axios";
 
 export const AuthContext = createContext({} as IAuthContext);
 
